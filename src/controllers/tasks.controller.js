@@ -1,6 +1,8 @@
-import { json } from "express";
 import Task from "../models/task.model.js";
+import { json } from "express";
 import { v4 as uuidv4 } from 'uuid';    
+
+  // Se importa el modelo correcto
 
 export const getTasks = async (req, res) => {
   try {
