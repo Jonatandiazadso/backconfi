@@ -3,16 +3,21 @@ import { json } from "express";
 import { v4 as uuidv4 } from 'uuid';    
 
   // Se importa el modelo correcto
-
-export const getTasks = async (req, res) => {
-  try {
-    const tasks = await Task.find().populate('tutor');
-    res.json(tasks);
-  } catch (error) {
-    res.status(500).json({ message: "Internal Server Error" });
-  }
-};
-
+  export const getTasks = async (req, res) => {
+    try {
+      // Obtén el ID del tutor autenticado desde req.user.id
+      const tutorId = req.user.id;
+  
+      // Busca solo las tareas creadas por el tutor actual
+      const tasks = await Task.find({ tutor: tutorId });
+  
+      res.json(tasks);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: "Internal Server Error" });
+    }
+  };
+  
 export const createTask = async (req, res) => {
   const { fechaRuta, puntoSalida, geosalida, puntoLlegada, geollegada, tiempoEstimado, estado, medioTransporte } = req.body;
 
