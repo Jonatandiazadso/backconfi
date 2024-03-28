@@ -1,4 +1,4 @@
-   import { AdminModel } from "../models/admin.model.js";
+ import { AdminModel } from "../models/admin.model.js";
  import bcrypt from "bcrypt";  
  import jwt from 'jsonwebtoken'
  import User from '../models/user.model.js';
@@ -73,6 +73,7 @@
    }
  };
 
+
  export const iniciarSesionAdmin = async (req, res) => {
   const { email, password } = req.body;
 
@@ -95,6 +96,7 @@
       res.status(500).json({ message: 'Error interno del servidor' });
   }
 };
+
  export const logoutAdmin = (req, res) => {
    // Simplemente respondemos con un código 200 OK, ya que no hay acción adicional en el servidor
    res.status(200).json({ message: "Logout exitoso" });

@@ -66,6 +66,7 @@ export const login = async (req, res) => {
             apellidos: userFound.apellidos,
             createdAt: userFound.createdAt,
             updatedAt: userFound.updatedAt,
+            token:token,
         });
     } catch (error) {
         res.status(500).json({ message: error.message });
@@ -74,9 +75,10 @@ export const login = async (req, res) => {
 
 // Cierre de sesión de usuario
 export const logout = (req, res) => {
-    res.cookie('token', "", { expires: new Date(0) });
-    return res.sendStatus(200);
+    res.clearCookie('token'); // Elimina la cookie que contiene el token
+    return res.status(200).json({ message: 'Sesión cerrada exitosamente' }); // Envía un mensaje de sesión cerrada
 };
+
 
 // Obtener perfil de usuario
 export const profile = async (req, res) => {

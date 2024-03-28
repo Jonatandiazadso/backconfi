@@ -8,6 +8,7 @@ router.get('/menor', authRequired, getMenores );
 router.get('/menor/:id', authRequired, getMenor);
 router.post('/menor', authRequired, createMenor );
 router.delete('/menor/:id', authRequired, deleteMenor );
+
 router.put('/menor/:id', authRequired, updateMenor);
 router.post('/menorlogin', loginMenor );
 export default router
